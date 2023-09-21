@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:smart_shopping/auth-ui/sign_up_screen.dart';
 import 'package:smart_shopping/utills/constant.dart';
 import 'package:smart_shopping/utills/custom_textfield.dart';
 import 'package:smart_shopping/utills/keybord_hider.dart';
@@ -46,10 +47,11 @@ class SignInScreen extends StatelessWidget {
                       const CustomTextField(
                         hintText: 'Email',
                         controller: null,
-                        prefixIcon: Icon(
+                        sufixIcon: Icon(
                           Icons.email_outlined,
                           size: 18,
                         ),
+                        textKeyboardType: TextInputType.emailAddress,
                       ),
                       const CustomTextField(
                         hintText: 'Password',
@@ -58,12 +60,8 @@ class SignInScreen extends StatelessWidget {
                           Icons.visibility,
                           size: 18,
                         ),
-                        prefixIcon: Icon(
-                          Icons.password_outlined,
-                          size: 18,
-                        ),
+                        textKeyboardType: TextInputType.visiblePassword,
                       ),
-                      // const SizedBox(height: 10),
                       Container(
                         alignment: Alignment.centerRight,
                         child: TextButton(
@@ -88,7 +86,7 @@ class SignInScreen extends StatelessWidget {
                             ),
                             onPressed: () async {}),
                       ),
-                      SizedBox(height: Get.height / 20),
+                      const Spacer(),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -97,7 +95,7 @@ class SignInScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           GestureDetector(
-                            // onTap: () => Get.offAll(() => SignUpScreen()),
+                            onTap: () => Get.offAll(() => const SignUpScreen()),
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(
@@ -107,7 +105,8 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                         ],
-                      )
+                      ),
+                      const SizedBox(height: 20),
                     ],
                   ),
                 ),

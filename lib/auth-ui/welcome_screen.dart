@@ -1,10 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_shopping/controllers/google_signin_controller.dart';
 import 'package:smart_shopping/utills/constant.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  WelcomeScreen({super.key});
+  final GoogleSignInController _googleSignInController =
+      Get.put(GoogleSignInController());
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,9 @@ class WelcomeScreen extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            _googleSignInController.signInWitGoogle();
+                          },
                           label: const Text(
                             'Sign In with google',
                             style: TextStyle(fontSize: 16),
