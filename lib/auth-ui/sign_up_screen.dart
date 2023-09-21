@@ -1,9 +1,11 @@
-// ignore_for_file: file_names
+// ignore_for_file: file_names, must_be_immutable
 
 import 'package:animate_do/animate_do.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:smart_shopping/controllers/sign_up_controller.dart';
 import 'package:smart_shopping/utills/constant.dart';
 import 'package:smart_shopping/utills/custom_textfield.dart';
 import 'package:smart_shopping/utills/keybord_hider.dart';
@@ -11,7 +13,14 @@ import 'package:smart_shopping/utills/keybord_hider.dart';
 import 'sign_In_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+  SignUpScreen({super.key});
+
+  final SingUpController singUpController = Get.put(SingUpController());
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController cityController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +42,7 @@ class SignUpScreen extends StatelessWidget {
                   ? const SizedBox.shrink()
                   : Expanded(
                       child: FadeInDownBig(
-                          duration: const Duration(milliseconds: 1500),
+                          duration: const Duration(milliseconds: 1000),
                           child: Center(
                               child: Image.asset(
                             'assets/images/main-logo.png',
@@ -47,50 +56,64 @@ class SignUpScreen extends StatelessWidget {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: [
-                          const CustomTextField(
+                          CustomTextField(
                             hintText: 'Email',
-                            controller: null,
-                            sufixIcon: Icon(
+                            controller: emailController,
+                            sufixIcon: const Icon(
                               Icons.email_outlined,
                               size: 20,
                             ),
                             textKeyboardType: TextInputType.emailAddress,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             hintText: 'User Name',
-                            controller: null,
-                            sufixIcon: Icon(
+                            controller: nameController,
+                            sufixIcon: const Icon(
                               Icons.person_2_outlined,
                               size: 20,
                             ),
                             textKeyboardType: TextInputType.name,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             hintText: 'Phone No.',
-                            controller: null,
-                            sufixIcon: Icon(
+                            controller: phoneController,
+                            sufixIcon: const Icon(
                               Icons.phone_enabled_outlined,
                               size: 20,
                             ),
                             textKeyboardType: TextInputType.phone,
                           ),
-                          const CustomTextField(
+                          CustomTextField(
                             hintText: 'City',
-                            controller: null,
-                            sufixIcon: Icon(
+                            controller: cityController,
+                            sufixIcon: const Icon(
                               Icons.location_pin,
                               size: 20,
                             ),
                             textKeyboardType: TextInputType.streetAddress,
                           ),
-                          const CustomTextField(
-                            hintText: 'Password',
-                            controller: null,
-                            sufixIcon: Icon(
-                              Icons.visibility,
-                              size: 20,
+                          Obx(
+                            () => CustomTextField(
+                              obscurText:
+                                  singUpController.isVisiblePassword.value,
+                              hintText: 'Password',
+                              controller: passwordController,
+                              sufixIcon: GestureDetector(
+                                onTap: () {
+                                  singUpController.isVisiblePassword.toggle();
+                                },
+                                child: singUpController.isVisiblePassword.value
+                                    ? const Icon(
+                                        Icons.visibility_off,
+                                        size: 20,
+                                      )
+                                    : const Icon(
+                                        Icons.visibility,
+                                        size: 20,
+                                      ),
+                              ),
+                              textKeyboardType: TextInputType.visiblePassword,
                             ),
-                            textKeyboardType: TextInputType.visiblePassword,
                           ),
                           const SizedBox(height: 20),
                           SizedBox(
@@ -102,7 +125,44 @@ class SignUpScreen extends StatelessWidget {
                                   style: TextStyle(
                                       color: Colors.black, fontSize: 16),
                                 ),
-                                onPressed: () async {}),
+                                onPressed: () async {
+                                  String name = nameController.text.trim();
+                                  String email = emailController.text.trim();
+                                  String phone = phoneController.text.trim();
+                                  String city = cityController.text.trim();
+                                  String password =
+                                      passwordController.text.trim();
+                                  String deviceToken = '';
+
+                                  if (name.isEmpty ||
+                                      email.isEmpty ||
+                                      phone.isEmpty ||
+                                      city.isEmpty ||
+                                      password.isEmpty) {
+                                    Get.snackbar(
+                                        'Error', 'Please enter all details',
+                                        backgroundColor: AppConst.secondarColor,
+                                        snackPosition: SnackPosition.BOTTOM);
+                                  } else {
+                                    UserCredential? userCredential =
+                                        await singUpController.signUpMethod(
+                                            email,
+                                            name,
+                                            phone,
+                                            city,
+                                            password,
+                                            deviceToken);
+                                    if (userCredential != null) {
+                                      Get.snackbar('Verification email sent',
+                                          'Please check your email',
+                                          backgroundColor:
+                                              AppConst.secondarColor,
+                                          snackPosition: SnackPosition.BOTTOM);
+                                      FirebaseAuth.instance.signOut();
+                                      Get.offAll(() => SignInScreen());
+                                    }
+                                  }
+                                }),
                           ),
                           // SizedBox(height: Get.height / 20),
                           const Spacer(),

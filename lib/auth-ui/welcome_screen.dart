@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:smart_shopping/auth-ui/sign_In_screen.dart';
 import 'package:smart_shopping/controllers/google_signin_controller.dart';
 import 'package:smart_shopping/utills/constant.dart';
 
@@ -60,7 +61,9 @@ class WelcomeScreen extends StatelessWidget {
                     child: SizedBox(
                       width: double.infinity,
                       child: TextButton.icon(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => const SignInScreen());
+                          },
                           label: const Text(
                             'Sign In with email',
                             style: TextStyle(fontSize: 16),

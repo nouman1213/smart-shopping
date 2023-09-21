@@ -11,7 +11,7 @@ import '../screens/user-pannel/main_screen.dart';
 
 class GoogleSignInController extends GetxController {
   GoogleSignIn googleSignIn = GoogleSignIn();
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
   Future<void> signInWitGoogle() async {
     try {

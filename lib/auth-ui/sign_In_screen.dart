@@ -31,7 +31,7 @@ class SignInScreen extends StatelessWidget {
                   ? const SizedBox.shrink()
                   : Expanded(
                       child: FadeInDownBig(
-                          duration: const Duration(milliseconds: 1500),
+                          duration: const Duration(milliseconds: 1000),
                           child: Center(
                               child: Image.asset(
                             'assets/images/main-logo.png',
@@ -95,7 +95,7 @@ class SignInScreen extends StatelessWidget {
                             style: TextStyle(fontSize: 16, color: Colors.black),
                           ),
                           GestureDetector(
-                            onTap: () => Get.offAll(() => const SignUpScreen()),
+                            onTap: () => Get.offAll(() => SignUpScreen()),
                             child: const Text(
                               "Sign Up",
                               style: TextStyle(
