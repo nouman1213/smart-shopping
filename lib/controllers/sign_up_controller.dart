@@ -61,5 +61,6 @@ class SingUpController extends GetxController {
           backgroundColor: AppConst.secondarColor,
           snackPosition: SnackPosition.BOTTOM);
     }
+    return null;
   }
 }

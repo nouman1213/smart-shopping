@@ -17,7 +17,7 @@ class WelcomeScreen extends StatelessWidget {
         children: [
           Expanded(
               child: FadeInDownBig(
-                  duration: const Duration(milliseconds: 1500),
+                  duration: const Duration(milliseconds: 1000),
                   child: Center(
                       child: Image.asset(
                     'assets/images/main-logo.png',
@@ -62,7 +62,7 @@ class WelcomeScreen extends StatelessWidget {
                       width: double.infinity,
                       child: TextButton.icon(
                           onPressed: () {
-                            Get.to(() => const SignInScreen());
+                            Get.to(() => SignInScreen());
                           },
                           label: const Text(
                             'Sign In with email',

@@ -175,8 +175,7 @@ class SignUpScreen extends StatelessWidget {
                                     fontSize: 16, color: Colors.black),
                               ),
                               GestureDetector(
-                                onTap: () =>
-                                    Get.offAll(() => const SignInScreen()),
+                                onTap: () => Get.offAll(() => SignInScreen()),
                                 child: const Text(
                                   "Sign In",
                                   style: TextStyle(
