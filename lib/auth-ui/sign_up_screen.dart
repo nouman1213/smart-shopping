@@ -41,7 +41,7 @@ class SignUpScreen extends StatelessWidget {
               isKeyboardVisible
                   ? const SizedBox.shrink()
                   : Expanded(
-                      child: FadeInDownBig(
+                      child: FadeInUp(
                           duration: const Duration(milliseconds: 1000),
                           child: Center(
                               child: Image.asset(

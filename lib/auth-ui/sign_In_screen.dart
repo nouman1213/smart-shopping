@@ -5,6 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
+import 'package:smart_shopping/auth-ui/forget_pass_screen.dart';
 import 'package:smart_shopping/auth-ui/sign_up_screen.dart';
 import 'package:smart_shopping/controllers/sign_in_controller.dart';
 import 'package:smart_shopping/screens/user-pannel/main_screen.dart';
@@ -37,7 +38,7 @@ class SignInScreen extends StatelessWidget {
               isKeyboardVisible
                   ? const SizedBox.shrink()
                   : Expanded(
-                      child: FadeInDownBig(
+                      child: FadeInUp(
                           duration: const Duration(milliseconds: 1000),
                           child: Center(
                               child: Image.asset(
@@ -82,7 +83,9 @@ class SignInScreen extends StatelessWidget {
                       Container(
                         alignment: Alignment.centerRight,
                         child: TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.to(() => ForgetPassScreen());
+                          },
                           child: const Text(
                             'Forget Password?',
                             style: TextStyle(

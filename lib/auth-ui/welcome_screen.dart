@@ -16,7 +16,7 @@ class WelcomeScreen extends StatelessWidget {
       body: Column(
         children: [
           Expanded(
-              child: FadeInDownBig(
+              child: FadeInUp(
                   duration: const Duration(milliseconds: 1000),
                   child: Center(
                       child: Image.asset(
