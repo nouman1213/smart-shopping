@@ -10,6 +10,7 @@ import 'package:smart_shopping/utills/constant.dart';
 import 'package:smart_shopping/utills/custom_textfield.dart';
 import 'package:smart_shopping/utills/keybord_hider.dart';
 
+import '../controllers/get_device_token_controller.dart';
 import 'sign_In_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
@@ -21,7 +22,8 @@ class SignUpScreen extends StatelessWidget {
   TextEditingController phoneController = TextEditingController();
   TextEditingController cityController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-
+  final GetDeviceTokenController getDeviceTokenController =
+      Get.put(GetDeviceTokenController());
   @override
   Widget build(BuildContext context) {
     return KeyboardVisibilityBuilder(builder: (context, isKeyboardVisible) {
@@ -132,7 +134,6 @@ class SignUpScreen extends StatelessWidget {
                                   String city = cityController.text.trim();
                                   String password =
                                       passwordController.text.trim();
-                                  String deviceToken = '';
 
                                   if (name.isEmpty ||
                                       email.isEmpty ||
@@ -151,7 +152,8 @@ class SignUpScreen extends StatelessWidget {
                                             phone,
                                             city,
                                             password,
-                                            deviceToken);
+                                            getDeviceTokenController.deviceToken
+                                                .toString());
                                     if (userCredential != null) {
                                       Get.snackbar('Verification email sent',
                                           'Please check your email',
