@@ -1,4 +1,4 @@
-// ignore_for_file: file_names, must_be_immutable
+// ignore_for_file: file_names, must_be_immutable, unnecessary_null_comparison
 
 import 'package:animate_do/animate_do.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -13,10 +13,15 @@ import 'package:smart_shopping/utills/constant.dart';
 import 'package:smart_shopping/utills/custom_textfield.dart';
 import 'package:smart_shopping/utills/keybord_hider.dart';
 
+import '../controllers/ge_tuser_data_controller.dart';
+import '../screens/admin-pannel/admin_main_screen.dart';
+
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
 
   final SingInController singInController = Get.put(SingInController());
+  final GetUserDataController getUserDataController =
+      Get.put(GetUserDataController());
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -118,13 +123,26 @@ class SignInScreen extends StatelessWidget {
                                 UserCredential? userCredential =
                                     await singInController.signInMethod(
                                         email, password);
+
+                                var userData = await getUserDataController
+                                    .getUserData(userCredential!.user!.uid);
                                 if (userCredential != null) {
                                   if (userCredential.user!.emailVerified) {
-                                    Get.snackbar(
-                                        'Success', 'Sign In sucessfully',
-                                        backgroundColor: AppConst.secondarColor,
-                                        snackPosition: SnackPosition.BOTTOM);
-                                    Get.offAll(() => MainScreen());
+                                    if (userData[0]['isAdmin'] == true) {
+                                      Get.offAll(() => AdminMainScreen());
+                                      Get.snackbar(
+                                          'Success', 'Admin login sucessfully',
+                                          backgroundColor:
+                                              AppConst.secondarColor,
+                                          snackPosition: SnackPosition.BOTTOM);
+                                    } else {
+                                      Get.snackbar(
+                                          'Success', 'User login sucessfully',
+                                          backgroundColor:
+                                              AppConst.secondarColor,
+                                          snackPosition: SnackPosition.BOTTOM);
+                                      Get.offAll(() => MainScreen());
+                                    }
                                   } else {
                                     Get.snackbar('Error',
                                         'Please verify email before sign in',
