@@ -70,7 +70,7 @@ class WelcomeScreen extends StatelessWidget {
                           ),
                           icon: const Icon(
                             Icons.email_outlined,
-                            size: 35,
+                            // size: 30,
                           )),
                     ),
                   ),

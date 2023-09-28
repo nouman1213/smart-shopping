@@ -62,8 +62,8 @@ class ForgetPassScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 30),
                       SizedBox(
-                        width: Get.width / 2,
-                        height: Get.height / 16,
+                        // width: Get.width / 2,
+                        // height: Get.height / 16,
                         child: ElevatedButton(
                             child: const Text(
                               "Forget Password",

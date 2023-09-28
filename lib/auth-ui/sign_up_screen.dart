@@ -51,11 +51,11 @@ class SignUpScreen extends StatelessWidget {
                             scale: 1.6,
                           )))),
               Expanded(
-                  flex: 2,
+                  flex: 3,
                   child: Container(
                     color: AppConst.primaryColor,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(6.0),
                       child: Column(
                         children: [
                           CustomTextField(
@@ -85,15 +85,15 @@ class SignUpScreen extends StatelessWidget {
                             ),
                             textKeyboardType: TextInputType.phone,
                           ),
-                          CustomTextField(
-                            hintText: 'City',
-                            controller: cityController,
-                            sufixIcon: const Icon(
-                              Icons.location_pin,
-                              size: 20,
-                            ),
-                            textKeyboardType: TextInputType.streetAddress,
-                          ),
+                          // CustomTextField(
+                          //   hintText: 'City',
+                          //   controller: cityController,
+                          //   sufixIcon: const Icon(
+                          //     Icons.location_pin,
+                          //     size: 20,
+                          //   ),
+                          //   textKeyboardType: TextInputType.streetAddress,
+                          // ),
                           Obx(
                             () => CustomTextField(
                               obscurText:
@@ -117,7 +117,8 @@ class SignUpScreen extends StatelessWidget {
                               textKeyboardType: TextInputType.visiblePassword,
                             ),
                           ),
-                          const SizedBox(height: 20),
+                          // const SizedBox(height: 10),
+                          Spacer(),
                           SizedBox(
                             width: Get.width / 2,
                             height: Get.height / 16,
@@ -188,7 +189,7 @@ class SignUpScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          const SizedBox(height: 20),
+                          // const SizedBox(height: 10),
                         ],
                       ),
                     ),
