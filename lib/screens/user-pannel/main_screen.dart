@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/widgets/drawer_widget.dart';
+
+import '../../widgets/banner_widget.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -11,6 +14,16 @@ class MainScreen extends StatelessWidget {
         backgroundColor: AppConst.primaryColor,
         title: const Text('Main Screen'),
       ),
+      body: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        child: Column(
+          children: [
+            const Text('data'),
+            BannerWidget(),
+          ],
+        ),
+      ),
+      drawer: const DrawerWidget(),
     );
   }
 }
