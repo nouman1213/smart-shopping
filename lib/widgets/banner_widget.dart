@@ -36,6 +36,6 @@ class BannerWidget extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             autoPlay: true,
             aspectRatio: 2.5,
-            viewportFraction: 1)));
+            viewportFraction: 2)));
   }
 }
