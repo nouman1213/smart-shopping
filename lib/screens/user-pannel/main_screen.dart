@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:smart_shopping/utills/constant.dart';
 import 'package:smart_shopping/widgets/drawer_widget.dart';
 import 'package:smart_shopping/widgets/headig_widget.dart';
 
 import '../../widgets/banner_widget.dart';
 import '../../widgets/category_widget.dart';
+import '../../widgets/flash_sale.dart';
+import 'all_category-screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -27,11 +30,19 @@ class MainScreen extends StatelessWidget {
               //heading widget
               HeadingWidget(
                   headigTitle: "Categories",
+                  headigSubTitle: 'According to your budgets',
+                  buttonText: 'See More',
+                  ontap: () => Get.to(() => const AllCategoriesScreen())),
+              //category widget
+              const CategoriesWidget(),
+              //heading widget
+              HeadingWidget(
+                  headigTitle: "Flash Sale",
                   headigSubTitle: 'Low Budget',
                   buttonText: 'See More',
                   ontap: () {}),
-              //category widget
-              CategoriesWidget(),
+              //Flash Sale
+              const FlashSaleWidget()
             ],
           ),
         ),

@@ -37,13 +37,13 @@ class CategoriesWidget extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,
                   itemBuilder: (context, index) {
-                    var doc = snapshot.data!.docs[index];
+                    var categoryData = snapshot.data!.docs[index];
                     CategoriesModel categoriesModel = CategoriesModel(
-                      categoryId: doc['categoryId'],
-                      categoryImg: doc['categoryImg'],
-                      categoryName: doc['categoryName'],
-                      createdAt: doc['createdAt'],
-                      updatedAt: doc['updatedAt'],
+                      categoryId: categoryData['categoryId'],
+                      categoryImg: categoryData['categoryImg'],
+                      categoryName: categoryData['categoryName'],
+                      createdAt: categoryData['createdAt'],
+                      updatedAt: categoryData['updatedAt'],
                     );
                     return Row(children: [
                       Padding(
