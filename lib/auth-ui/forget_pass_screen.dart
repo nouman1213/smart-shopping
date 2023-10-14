@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:get/get.dart';
 
-import 'package:smart_shopping/utills/constant.dart';
-import 'package:smart_shopping/utills/custom_textfield.dart';
-import 'package:smart_shopping/utills/keybord_hider.dart';
+import 'package:smart_shopping/utils/constant.dart';
+import 'package:smart_shopping/utils/custom_textfield.dart';
+import 'package:smart_shopping/utils/keybord_hider.dart';
 
 import '../controllers/forget_pass_Controller.dart';
 

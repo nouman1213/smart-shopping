@@ -3,7 +3,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
-import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/screens/user-pannel/single_category_prod_screen.dart';
+import 'package:smart_shopping/utils/constant.dart';
 
 import '../../model/categories_model.dart';
 
@@ -58,8 +59,10 @@ class AllCategoriesScreen extends StatelessWidget {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-                            // color: Colors.red,
+                          GestureDetector(
+                            onTap: () => Get.to(() =>
+                                SingleCategoriesProductScreen(
+                                    categoryId: categoriesModel.categoryId)),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: FillImageCard(
@@ -80,7 +83,7 @@ class AllCategoriesScreen extends StatelessWidget {
                                 // footer: const Text('desc'),
                               ),
                             ),
-                          )
+                          ),
                         ]);
                   });
             }

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../auth-ui/welcome_screen.dart';
-import '../utills/constant.dart';
+import '../utils/constant.dart';
 
 class DrawerWidget extends StatefulWidget {
   const DrawerWidget({super.key});

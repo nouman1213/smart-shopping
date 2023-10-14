@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 import 'package:smart_shopping/model/categories_model.dart';
 
+import '../screens/user-pannel/single_category_prod_screen.dart';
+
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
 
@@ -46,23 +48,28 @@ class CategoriesWidget extends StatelessWidget {
                       updatedAt: categoryData['updatedAt'],
                     );
                     return Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: FillImageCard(
-                          borderRadius: 10,
-                          width: Get.width / 3,
-                          heightImage: Get.height / 12,
-                          imageProvider: CachedNetworkImageProvider(
-                              categoriesModel.categoryImg),
-                          title: Text(
-                            categoriesModel.categoryName,
-                            style: TextStyle(fontWeight: FontWeight.bold),
+                      GestureDetector(
+                        onTap: () => Get.to(() => SingleCategoriesProductScreen(
+                            categoryId: categoriesModel.categoryId)),
+                        child: Padding(
+                          padding: const EdgeInsets.all(5.0),
+                          child: FillImageCard(
+                            borderRadius: 10,
+                            width: Get.width / 3,
+                            heightImage: Get.height / 12,
+                            imageProvider: CachedNetworkImageProvider(
+                                categoriesModel.categoryImg),
+                            title: Text(
+                              categoriesModel.categoryName,
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            description: const Text(
+                              'This is category description',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                            // footer: const Text('desc'),
                           ),
-                          description: const Text(
-                            'This is category description',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                          // footer: const Text('desc'),
                         ),
                       )
                     ]);

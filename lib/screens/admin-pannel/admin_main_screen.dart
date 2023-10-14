@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/utils/constant.dart';
 
 class AdminMainScreen extends StatelessWidget {
   const AdminMainScreen({super.key});

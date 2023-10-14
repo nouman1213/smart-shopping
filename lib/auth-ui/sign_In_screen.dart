@@ -9,9 +9,9 @@ import 'package:smart_shopping/auth-ui/forget_pass_screen.dart';
 import 'package:smart_shopping/auth-ui/sign_up_screen.dart';
 import 'package:smart_shopping/controllers/sign_in_controller.dart';
 import 'package:smart_shopping/screens/user-pannel/main_screen.dart';
-import 'package:smart_shopping/utills/constant.dart';
-import 'package:smart_shopping/utills/custom_textfield.dart';
-import 'package:smart_shopping/utills/keybord_hider.dart';
+import 'package:smart_shopping/utils/constant.dart';
+import 'package:smart_shopping/utils/custom_textfield.dart';
+import 'package:smart_shopping/utils/keybord_hider.dart';
 
 import '../controllers/ge_tuser_data_controller.dart';
 import '../screens/admin-pannel/admin_main_screen.dart';

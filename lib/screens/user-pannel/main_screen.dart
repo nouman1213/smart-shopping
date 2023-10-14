@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/utils/constant.dart';
 import 'package:smart_shopping/widgets/drawer_widget.dart';
 import 'package:smart_shopping/widgets/headig_widget.dart';
 

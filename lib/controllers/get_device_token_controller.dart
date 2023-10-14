@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
-import '../utills/constant.dart';
+import '../utils/constant.dart';
 
 class GetDeviceTokenController extends GetxController {
   String? deviceToken;

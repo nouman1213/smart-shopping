@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:smart_shopping/auth-ui/sign_In_screen.dart';
 import 'package:smart_shopping/controllers/google_signin_controller.dart';
-import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/utils/constant.dart';
 
 class WelcomeScreen extends StatelessWidget {
   WelcomeScreen({super.key});

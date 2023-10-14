@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:smart_shopping/utills/constant.dart';
+import 'package:smart_shopping/utils/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../controllers/ge_tuser_data_controller.dart';
