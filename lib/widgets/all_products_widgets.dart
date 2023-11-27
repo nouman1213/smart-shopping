@@ -5,8 +5,10 @@ import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 import 'package:smart_shopping/model/product_model.dart';
 
-class FlashSaleWidget extends StatelessWidget {
-  const FlashSaleWidget({super.key});
+import '../screens/user-panel/products_details_screen.dart';
+
+class AllProductsWidget extends StatelessWidget {
+  const AllProductsWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,12 +35,15 @@ class FlashSaleWidget extends StatelessWidget {
           }
           if (snapshot.data != null) {
             return SizedBox(
-              // color: Colors.amber,
-              height: Get.height / 4.8,
-              child: ListView.builder(
-                  itemCount: snapshot.data!.docs.length,
-                  scrollDirection: Axis.horizontal,
+              child: GridView.builder(
                   shrinkWrap: true,
+                  physics: const BouncingScrollPhysics(),
+                  itemCount: snapshot.data!.docs.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: 3,
+                      crossAxisSpacing: 3,
+                      childAspectRatio: 1),
                   itemBuilder: (context, index) {
                     var productsData = snapshot.data!.docs[index];
                     ProductModel productModel = ProductModel(
@@ -55,39 +60,34 @@ class FlashSaleWidget extends StatelessWidget {
                       createdAt: productsData['createdAt'],
                       updatedAt: productsData['updatedAt'],
                     );
-                    return Row(children: [
-                      Padding(
-                        padding: const EdgeInsets.all(5.0),
-                        child: FillImageCard(
-                          borderRadius: 10,
-                          width: Get.width / 3,
-                          heightImage: Get.height / 12,
-                          imageProvider: CachedNetworkImageProvider(
-                              productModel.productImages[0]),
-                          title: Text(
-                            productModel.productName,
-                            style: const TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          description: Text(
-                            productModel.productDescription,
-                            style: const TextStyle(fontSize: 12),
-                          ),
-                          footer: Row(
-                            children: [
-                              Text("Rs ${productModel.salePrice}"),
-                              // const SizedBox(width: 5.0),
-                              const Spacer(),
-                              Text(
-                                productModel.fullPrice,
-                                style: const TextStyle(
-                                    decoration: TextDecoration.lineThrough,
-                                    color: Colors.red),
+                    return Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          GestureDetector(
+                            onTap: () => Get.to(() => ProductsDetailsScreen(
+                                productModel: productModel)),
+                            child: Padding(
+                              padding: const EdgeInsets.all(5.0),
+                              child: FillImageCard(
+                                borderRadius: 10,
+                                width: Get.width / 2.3,
+                                heightImage: Get.height / 10,
+                                imageProvider: CachedNetworkImageProvider(
+                                    productModel.productImages[0]),
+                                title: Text(
+                                  productModel.productName,
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                description: const Text(
+                                  'This is category description',
+                                  style: TextStyle(fontSize: 12),
+                                ),
+                                // footer: const Text('desc'),
                               ),
-                            ],
+                            ),
                           ),
-                        ),
-                      )
-                    ]);
+                        ]);
                   }),
             );
           }

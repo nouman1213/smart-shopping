@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import 'package:smart_shopping/utils/constant.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../controllers/ge_tuser_data_controller.dart';
-import '../screens/admin-pannel/admin_main_screen.dart';
-import '../screens/user-pannel/main_screen.dart';
+import '../controllers/get_user_data_controller.dart';
+import '../screens/admin-panel/admin_main_screen.dart';
+import '../screens/user-panel/main_screen.dart';
 import 'welcome_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -36,9 +36,9 @@ class _SplashScreenState extends State<SplashScreen> {
       var userData = await getUserDataController.getUserData(user!.uid);
 
       if (userData[0]['isAdmin'] == true) {
-        Get.offAll(() => AdminMainScreen());
+        Get.offAll(() => const AdminMainScreen());
       } else {
-        Get.offAll(() => MainScreen());
+        Get.offAll(() => const MainScreen());
       }
     } else {
       Get.to(() => WelcomeScreen());

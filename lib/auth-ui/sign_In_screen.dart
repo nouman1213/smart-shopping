@@ -8,13 +8,13 @@ import 'package:get/get.dart';
 import 'package:smart_shopping/auth-ui/forget_pass_screen.dart';
 import 'package:smart_shopping/auth-ui/sign_up_screen.dart';
 import 'package:smart_shopping/controllers/sign_in_controller.dart';
-import 'package:smart_shopping/screens/user-pannel/main_screen.dart';
+import 'package:smart_shopping/screens/user-panel/main_screen.dart';
 import 'package:smart_shopping/utils/constant.dart';
 import 'package:smart_shopping/utils/custom_textfield.dart';
 import 'package:smart_shopping/utils/keybord_hider.dart';
 
-import '../controllers/ge_tuser_data_controller.dart';
-import '../screens/admin-pannel/admin_main_screen.dart';
+import '../controllers/get_user_data_controller.dart';
+import '../screens/admin-panel/admin_main_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   SignInScreen({super.key});
@@ -132,7 +132,7 @@ class SignInScreen extends StatelessWidget {
                                     if (userCredential != null) {
                                       if (userCredential.user!.emailVerified) {
                                         if (userData[0]['isAdmin'] == true) {
-                                          Get.offAll(() => AdminMainScreen());
+                                          Get.offAll(() => const AdminMainScreen());
                                           Get.snackbar('Success',
                                               'Admin login sucessfully',
                                               backgroundColor:
@@ -146,7 +146,7 @@ class SignInScreen extends StatelessWidget {
                                                   AppConst.secondarColor,
                                               snackPosition:
                                                   SnackPosition.BOTTOM);
-                                          Get.offAll(() => MainScreen());
+                                          Get.offAll(() => const MainScreen());
                                         }
                                       } else {
                                         Get.snackbar('Error',

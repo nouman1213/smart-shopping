@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
 import 'package:smart_shopping/model/categories_model.dart';
 
-import '../screens/user-pannel/single_category_prod_screen.dart';
+import '../screens/user-panel/single_category_prod_screen.dart';
 
 class CategoriesWidget extends StatelessWidget {
   const CategoriesWidget({super.key});
@@ -31,7 +31,7 @@ class CategoriesWidget extends StatelessWidget {
             );
           }
           if (snapshot.data != null) {
-            return Container(
+            return SizedBox(
               // color: Colors.amber,
               height: Get.height / 4.8,
               child: ListView.builder(

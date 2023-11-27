@@ -1,25 +1,30 @@
+// ignore_for_file: file_names
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_card/image_card.dart';
-import 'package:smart_shopping/screens/user-pannel/single_category_prod_screen.dart';
+import 'package:smart_shopping/screens/user-panel/single_category_prod_screen.dart';
 import 'package:smart_shopping/utils/constant.dart';
 
-import '../../model/categories_model.dart';
+import '../../model/product_model.dart';
 
-class AllCategoriesScreen extends StatelessWidget {
-  const AllCategoriesScreen({super.key});
+class AllFlashSaleScreen extends StatelessWidget {
+  const AllFlashSaleScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppConst.primaryColor,
-        title: const Text('All Categories'),
+        title: const Text('All Flash Sale Product'),
       ),
       body: FutureBuilder(
-          future: FirebaseFirestore.instance.collection('categories').get(),
+          future: FirebaseFirestore.instance
+              .collection('products')
+              .where('isSale', isEqualTo: true)
+              .get(),
           builder:
               (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
@@ -48,13 +53,20 @@ class AllCategoriesScreen extends StatelessWidget {
                       crossAxisSpacing: 3,
                       childAspectRatio: 1.19),
                   itemBuilder: (context, index) {
-                    var categoryData = snapshot.data!.docs[index];
-                    CategoriesModel categoriesModel = CategoriesModel(
-                      categoryId: categoryData['categoryId'],
-                      categoryImg: categoryData['categoryImg'],
-                      categoryName: categoryData['categoryName'],
-                      createdAt: categoryData['createdAt'],
-                      updatedAt: categoryData['updatedAt'],
+                    var productsData = snapshot.data!.docs[index];
+                    ProductModel productModel = ProductModel(
+                      productId: productsData['productId'],
+                      categoryId: productsData['categoryId'],
+                      productName: productsData['productName'],
+                      categoryName: productsData['categoryName'],
+                      salePrice: productsData['salePrice'],
+                      fullPrice: productsData['fullPrice'],
+                      productImages: productsData['productImages'],
+                      deliveryTime: productsData['deliveryTime'],
+                      isSale: productsData['isSale'],
+                      productDescription: productsData['productDescription'],
+                      createdAt: productsData['createdAt'],
+                      updatedAt: productsData['updatedAt'],
                     );
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -62,7 +74,7 @@ class AllCategoriesScreen extends StatelessWidget {
                           GestureDetector(
                             onTap: () => Get.to(() =>
                                 SingleCategoriesProductScreen(
-                                    categoryId: categoriesModel.categoryId)),
+                                    categoryId: productModel.productId)),
                             child: Padding(
                               padding: const EdgeInsets.all(5.0),
                               child: FillImageCard(
@@ -70,9 +82,9 @@ class AllCategoriesScreen extends StatelessWidget {
                                 width: Get.width / 2.2,
                                 heightImage: Get.height / 14,
                                 imageProvider: CachedNetworkImageProvider(
-                                    categoriesModel.categoryImg),
+                                    productModel.productImages[0]),
                                 title: Text(
-                                  categoriesModel.categoryName,
+                                  productModel.productName,
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),

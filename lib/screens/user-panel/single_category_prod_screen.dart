@@ -8,8 +8,6 @@ import 'package:image_card/image_card.dart';
 import 'package:smart_shopping/model/product_model.dart';
 import 'package:smart_shopping/utils/constant.dart';
 
-import '../../model/categories_model.dart';
-
 class SingleCategoriesProductScreen extends StatelessWidget {
   String categoryId;
   SingleCategoriesProductScreen({super.key, required this.categoryId});
@@ -72,6 +70,7 @@ class SingleCategoriesProductScreen extends StatelessWidget {
                     return Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
+                          
                           Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: FillImageCard(

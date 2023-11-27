@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:smart_shopping/model/user-model.dart';
 
-import '../screens/user-pannel/main_screen.dart';
+import '../screens/user-panel/main_screen.dart';
 import 'get_device_token_controller.dart';
 
 class GoogleSignInController extends GetxController {
